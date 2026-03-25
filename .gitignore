@@ -1,0 +1,4 @@
+__pycache__/
+.cspell/
+.streamlit/secrets.toml
+.vscode
