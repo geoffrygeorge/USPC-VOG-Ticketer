@@ -17,6 +17,7 @@ def main():
     st.html("""
                 <style>
                     .stAppHeader {visibility: hidden;}
+                    footer {visibility: hidden;}
                 </style>
             """)
 
