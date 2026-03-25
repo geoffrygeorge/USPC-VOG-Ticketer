@@ -1,0 +1,54 @@
+[theme]
+base = "light"
+primaryColor = "#5898D4"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#E3ECF7"
+#textColor =
+#linkColor =
+#linkUnderline =
+#codeBackgroundColor =
+#font =
+#fontFaces =
+#baseFontSize =
+#baseFontWeight =
+#headingFont =
+#headingFontSizes =
+#headingFontWeights =
+#codeFont =
+#codeFontSize =
+#codeFontWeight =
+#baseRadius =
+#buttonRadius =
+borderColor = "#A9C6E8"
+dataframeBorderColor = "#D9D9D9"
+dataframeHeaderBackgroundColor = "#FAFAFA"
+#showWidgetBorder =
+#showSidebarBorder =
+#chartCategoricalColors =
+#chartSequentialColors =
+
+[theme.sidebar]
+
+#primaryColor =
+#backgroundColor =
+#secondaryBackgroundColor =
+#textColor =
+#linkColor =
+#linkUnderline =
+#codeBackgroundColor =
+#font =
+#headingFont =
+#headingFontSizes =
+#headingFontWeights =
+#codeFont =
+#codeFontSize =
+#baseRadius =
+#buttonRadius =
+#borderColor =
+#dataframeBorderColor =
+#dataframeHeaderBackgroundColor =
+#showWidgetBorder =
+
+[client]
+showSidebarNavigation = false
+toolbarMode="minimal"
