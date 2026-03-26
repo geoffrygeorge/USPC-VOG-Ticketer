@@ -17,7 +17,7 @@ with GOLD_TAB:
     EVENT_ORDER_ID = 73312205 # This is the Event Order ID
     FORM_TICKET_TYPE = "Single - Gold" # This is the Ticket Type initialised in the form
 
-    with st.form("single_gold_form"):
+    with st.form("single_gold_form", clear_on_submit=True, enter_to_submit=False):
         st.subheader("Gold Booking Form", divider="grey")
         FIRST_NAME = st.text_input("First Name", icon=":material/id_card:", key="single_gold_first_name")
         LAST_NAME = st.text_input("Last Name", icon=":material/id_card:", key="single_gold_last_name")
@@ -85,7 +85,7 @@ with PLATINUM_TAB:
     EVENT_ORDER_ID = 73312270 # This is the Event Order ID
     FORM_TICKET_TYPE = "Single - Platinum" # This is the Ticket Type initialised in the form
 
-    with st.form("single_platinum_form"):
+    with st.form("single_platinum_form", clear_on_submit=True, enter_to_submit=False):
         st.subheader("Platinum Booking Form", divider="grey")
         FIRST_NAME = st.text_input("First Name", icon=":material/id_card:", key="single_platinum_first_name")
         LAST_NAME = st.text_input("Last Name", icon=":material/id_card:", key="single_platinum_last_name")
@@ -153,7 +153,7 @@ with DIAMOND_TAB:
     EVENT_ORDER_ID = 73312306 # This is the Event Order ID
     FORM_TICKET_TYPE = "Single - Diamond" # This is the Ticket Type initialised in the form
 
-    with st.form("single_diamond_form"):
+    with st.form("single_diamond_form", clear_on_submit=True, enter_to_submit=False):
         st.subheader("Diamond Booking Form", divider="grey")
         FIRST_NAME = st.text_input("First Name", icon=":material/id_card:", key="single_diamond_first_name")
         LAST_NAME = st.text_input("Last Name", icon=":material/id_card:", key="single_diamond_last_name")
