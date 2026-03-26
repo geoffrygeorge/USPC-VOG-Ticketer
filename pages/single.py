@@ -18,7 +18,7 @@ with GOLD_TAB:
     FORM_TICKET_TYPE = "Single - Gold" # This is the Ticket Type initialised in the form
 
     with st.form("single_gold_form"):
-        st.subheader("Gold Booking Form", divider="blue")
+        st.subheader("Gold Booking Form", divider="grey")
         FIRST_NAME = st.text_input("First Name", icon=":material/id_card:", key="single_gold_first_name")
         LAST_NAME = st.text_input("Last Name", icon=":material/id_card:", key="single_gold_last_name")
         EMAIL = st.text_input("Email", icon=":material/mail:", key="single_gold_email")
@@ -86,7 +86,7 @@ with PLATINUM_TAB:
     FORM_TICKET_TYPE = "Single - Platinum" # This is the Ticket Type initialised in the form
 
     with st.form("single_platinum_form"):
-        st.subheader("Platinum Booking Form", divider="blue")
+        st.subheader("Platinum Booking Form", divider="grey")
         FIRST_NAME = st.text_input("First Name", icon=":material/id_card:", key="single_platinum_first_name")
         LAST_NAME = st.text_input("Last Name", icon=":material/id_card:", key="single_platinum_last_name")
         EMAIL = st.text_input("Email", icon=":material/mail:", key="single_platinum_email")
@@ -154,7 +154,7 @@ with DIAMOND_TAB:
     FORM_TICKET_TYPE = "Single - Diamond" # This is the Ticket Type initialised in the form
 
     with st.form("single_diamond_form"):
-        st.subheader("Diamond Booking Form", divider="blue")
+        st.subheader("Diamond Booking Form", divider="grey")
         FIRST_NAME = st.text_input("First Name", icon=":material/id_card:", key="single_diamond_first_name")
         LAST_NAME = st.text_input("Last Name", icon=":material/id_card:", key="single_diamond_last_name")
         EMAIL = st.text_input("Email", icon=":material/mail:", key="single_diamond_email")

@@ -43,7 +43,7 @@ def home_title(HOME_TITLE):
                     font-size: calc(1.0em + 5.0vmin) !important;
                     font-family: 'Montserrat', sans-serif;
                     font-weight: bold;
-                    color: rgb(0, 84, 163) !important;
+                    color: rgb(5, 31, 170) !important;
                 }
             </style>
             """, unsafe_allow_html = True)
