@@ -10,6 +10,8 @@ def user_booking():
 
         st.divider()
 
+        st.warning("Please choose **Single** or **Family** option to proceed with the respective ticket creation process. Keep in mind that you may proceed with the **Family** option only if you are **four** in number 😊.")
+
         options = ["Single", "Family"]
         booking_option = st.pills(
             "Select", options, label_visibility="collapsed", selection_mode="single", default=None, width="stretch"
@@ -32,10 +34,50 @@ def user_booking():
 
     with st.expander("Price & Booking Info (Please read before proceeding)", icon=":material/info:", expanded=False):
 
-        st.write("Price & Booking Info will come here->")
+        TARIFF_DETAILS_TAB, IMPORTANT_INFO_TAB = st.tabs(["Tariff Details", "Important Info"], width="stretch")
 
-        # Tabs can be added to split price and booking info
+        with TARIFF_DETAILS_TAB:
+            tariff_category_options = ["Single", "Family"]
+            tariff_category_selection = st.segmented_control("Directions", tariff_category_options, default="Single", label_visibility="collapsed", selection_mode="single")
 
+            if tariff_category_selection == "Single":
+                st.subheader("Single Ticket Tariff Details", divider="grey")
+                GOLD_COLUMN, PLATINUM_COLUMN, DIAMOND_COLUMN = st.columns([1, 1, 1], gap="small", vertical_alignment="center")
+
+                with GOLD_COLUMN:
+                    st.metric("Gold 🪙", value="£ 30", border=True)
+
+                with PLATINUM_COLUMN:
+                    st.metric("Platinum 🔘", value="£ 40", border=True)
+
+                with DIAMOND_COLUMN:
+                    st.metric("Diamond 💎", value="£ 50", border=True)
+
+            elif tariff_category_selection == "Family":
+                st.subheader("Family Ticket Tariff Details", divider="grey")
+                GOLD_COLUMN, PLATINUM_COLUMN, DIAMOND_COLUMN = st.columns([1, 1, 1], gap="small", vertical_alignment="center")
+
+                with GOLD_COLUMN:
+                    st.metric("Gold 🪙", value="£ 100", border=True)
+
+                with PLATINUM_COLUMN:
+                    st.metric("Platinum 🔘", value="£ 150", border=True)
+
+                with DIAMOND_COLUMN:
+                    st.metric("Diamond 💎", value="£ 175", border=True)
+
+        with IMPORTANT_INFO_TAB:
+            st.subheader("Important Info", divider="grey")
+
+            st.markdown("* **1 Ticket = 1 Seat**. For **Single** Tickets, as the name suggests, one order is equivalent to one ticket which is equivalent to one seat. For **Family** Tickets, each order is equivalent to four tickets which is equivalent to four seats. Please make sure that you are a family of four before proceeding for a **Family** Ticket.")
+
+            st.markdown("* If you are a family of three, please proceed onto buying three **Single** Tickets but if you are family of five, for example, please proceed onto buying one **Family** Ticket and one additional **Single** Ticket (please make sure that details such as the *First Name*, *Last Name* & *Email* are the same while booking this additional ticket(s)).")
+
+            st.markdown("* Seats can be shared by infants or children but if you decide to use a seat for your child, you are requested to pay the respective seat.")
+
+            st.markdown("* Once an **Ticket Order** has been confirmed, an email will be sent to you with relevant information regarding your order along with payment instructions.")
+
+            st.markdown("* Please make sure that once an order has been confirmed, the payment must be made within 7 days, otherwise, the ticket will be available for other users to buy. You may need to initiate a fresh booking.")
 
     EMPTY_COL_1, BOOKING_BUTTON_COLUMN, EMPTY_COL_2 = st.columns([2, 1, 2], gap="small", vertical_alignment="center")
     with BOOKING_BUTTON_COLUMN:
