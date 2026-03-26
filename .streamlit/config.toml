@@ -1,8 +1,8 @@
 [theme]
 base = "light"
-primaryColor = "#5898D4"
+primaryColor = "#051FAA"
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#E3ECF7"
+secondaryBackgroundColor = "#FFF8EC"
 #textColor =
 #linkColor =
 #linkUnderline =
@@ -19,7 +19,7 @@ secondaryBackgroundColor = "#E3ECF7"
 #codeFontWeight =
 #baseRadius =
 #buttonRadius =
-borderColor = "#A9C6E8"
+borderColor = "#E5B81C"
 dataframeBorderColor = "#D9D9D9"
 dataframeHeaderBackgroundColor = "#FAFAFA"
 #showWidgetBorder =
