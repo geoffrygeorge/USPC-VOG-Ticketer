@@ -34,48 +34,51 @@ with GOLD_TAB:
             from pyairtable import Api
 
             try:
-                api = Api(st.secrets["airtable"]["PAT"])
-                base = api.base(st.secrets["airtable"]["BASE_ID"])
-                single_ticket_orders_base = base.table("Single Ticket Orders")
-                single_tickets_base = base.table("Single Tickets")
+                with st.spinner("Processing...", show_time=False):
+                    api = Api(st.secrets["airtable"]["PAT"])
+                    base = api.base(st.secrets["airtable"]["BASE_ID"])
+                    single_ticket_orders_base = base.table("Single Ticket Orders")
+                    single_tickets_base = base.table("Single Tickets")
 
-                # 1. Create customer
-                single_ticket_order_record = single_ticket_orders_base.create({
-                    "First Name": FIRST_NAME,
-                    "Last Name": LAST_NAME,
-                    "Email": EMAIL,
-                    "Form Category": FORM_CATEGORY,
-                    "Form Event Order ID": EVENT_ORDER_ID,
-                    "Form Ticket Type": FORM_TICKET_TYPE
-                })
-                single_ticket_order_id = single_ticket_order_record["id"]
-
-                # 2. Find available ticket
-                available_tickets = single_tickets_base.all(
-                    formula="AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Gold (£30)')",
-                    sort=["Auto ID"],
-                    max_records=1
-                )
-
-                if not available_tickets:
-                    st.warning("No available tickets at this time.")
-                else:
-                    ticket = available_tickets[0]
-                    ticket_record_id = ticket["id"]
-
-                    # 3. Link ticket to customer
-                    single_ticket_orders_base.update(single_ticket_order_id, {
-                        "Single Tickets (Linked)": [ticket_record_id]  # Linked field
+                    # 1. Create customer
+                    single_ticket_order_record = single_ticket_orders_base.create({
+                        "First Name": FIRST_NAME,
+                        "Last Name": LAST_NAME,
+                        "Email": EMAIL,
+                        "Form Category": FORM_CATEGORY,
+                        "Form Event Order ID": EVENT_ORDER_ID,
+                        "Form Ticket Type": FORM_TICKET_TYPE
                     })
+                    single_ticket_order_id = single_ticket_order_record["id"]
 
-                    # 4. Mark ticket as assigned
-                    single_tickets_base.update(ticket_record_id, {
-                        "Assigned": True,
-                        "Ticket Status": "On Hold",
-                        "Payment Status": "Pending"
-                    })
+                    # 2. Find available ticket
+                    available_tickets = single_tickets_base.all(
+                        formula="AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Gold (£30)')",
+                        sort=["Auto ID"],
+                        max_records=1
+                    )
 
-                    st.success("Form submitted and ticket assigned!")
+                    if not available_tickets:
+                        st.warning("No available tickets at this time.")
+                        st.stop()
+                    else:
+                        ticket = available_tickets[0]
+                        ticket_record_id = ticket["id"]
+
+                        # 3. Link ticket to customer
+                        single_ticket_orders_base.update(single_ticket_order_id, {
+                            "Single Tickets (Linked)": [ticket_record_id]  # Linked field
+                        })
+
+                        # 4. Mark ticket as assigned
+                        single_tickets_base.update(ticket_record_id, {
+                            "Assigned": True,
+                            "Ticket Status": "On Hold",
+                            "Payment Status": "Pending"
+                        })
+                    
+                st.balloons()
+                st.success(f"Thank you for placing an order, **{FIRST_NAME}**! Your order details will be sent to your email, **{EMAIL}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!", icon=":material/celebration:")
 
             except Exception as e:
                 st.error(f"Error submitting customer data to Airtable: {e}")
@@ -102,48 +105,51 @@ with PLATINUM_TAB:
             from pyairtable import Api
 
             try:
-                api = Api(st.secrets["airtable"]["PAT"])
-                base = api.base(st.secrets["airtable"]["BASE_ID"])
-                single_ticket_orders_base = base.table("Single Ticket Orders")
-                single_tickets_base = base.table("Single Tickets")
+                with st.spinner("Processing...", show_time=False):
+                    api = Api(st.secrets["airtable"]["PAT"])
+                    base = api.base(st.secrets["airtable"]["BASE_ID"])
+                    single_ticket_orders_base = base.table("Single Ticket Orders")
+                    single_tickets_base = base.table("Single Tickets")
 
-                # 1. Create customer
-                single_ticket_order_record = single_ticket_orders_base.create({
-                    "First Name": FIRST_NAME,
-                    "Last Name": LAST_NAME,
-                    "Email": EMAIL,
-                    "Form Category": FORM_CATEGORY,
-                    "Form Event Order ID": EVENT_ORDER_ID,
-                    "Form Ticket Type": FORM_TICKET_TYPE
-                })
-                single_ticket_order_id = single_ticket_order_record["id"]
-
-                # 2. Find available ticket
-                available_tickets = single_tickets_base.all(
-                    formula="AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Platinum (£40)')",
-                    sort=["Auto ID"],
-                    max_records=1
-                )
-
-                if not available_tickets:
-                    st.warning("No available tickets at this time.")
-                else:
-                    ticket = available_tickets[0]
-                    ticket_record_id = ticket["id"]
-
-                    # 3. Link ticket to customer
-                    single_ticket_orders_base.update(single_ticket_order_id, {
-                        "Single Tickets (Linked)": [ticket_record_id]  # Linked field
+                    # 1. Create customer
+                    single_ticket_order_record = single_ticket_orders_base.create({
+                        "First Name": FIRST_NAME,
+                        "Last Name": LAST_NAME,
+                        "Email": EMAIL,
+                        "Form Category": FORM_CATEGORY,
+                        "Form Event Order ID": EVENT_ORDER_ID,
+                        "Form Ticket Type": FORM_TICKET_TYPE
                     })
+                    single_ticket_order_id = single_ticket_order_record["id"]
 
-                    # 4. Mark ticket as assigned
-                    single_tickets_base.update(ticket_record_id, {
-                        "Assigned": True,
-                        "Ticket Status": "On Hold",
-                        "Payment Status": "Pending"
-                    })
+                    # 2. Find available ticket
+                    available_tickets = single_tickets_base.all(
+                        formula="AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Platinum (£40)')",
+                        sort=["Auto ID"],
+                        max_records=1
+                    )
 
-                    st.success("Form submitted and ticket assigned!")
+                    if not available_tickets:
+                        st.warning("No available tickets at this time.")
+                        st.stop()
+                    else:
+                        ticket = available_tickets[0]
+                        ticket_record_id = ticket["id"]
+
+                        # 3. Link ticket to customer
+                        single_ticket_orders_base.update(single_ticket_order_id, {
+                            "Single Tickets (Linked)": [ticket_record_id]  # Linked field
+                        })
+
+                        # 4. Mark ticket as assigned
+                        single_tickets_base.update(ticket_record_id, {
+                            "Assigned": True,
+                            "Ticket Status": "On Hold",
+                            "Payment Status": "Pending"
+                        })
+
+                st.balloons()
+                st.success(f"Thank you for placing an order, **{FIRST_NAME}**! Your order details will be sent to your email, **{EMAIL}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!", icon=":material/celebration:")
 
             except Exception as e:
                 st.error(f"Error submitting customer data to Airtable: {e}")
@@ -170,48 +176,51 @@ with DIAMOND_TAB:
             from pyairtable import Api
 
             try:
-                api = Api(st.secrets["airtable"]["PAT"])
-                base = api.base(st.secrets["airtable"]["BASE_ID"])
-                single_ticket_orders_base = base.table("Single Ticket Orders")
-                single_tickets_base = base.table("Single Tickets")
+                with st.spinner("Processing...", show_time=False):
+                    api = Api(st.secrets["airtable"]["PAT"])
+                    base = api.base(st.secrets["airtable"]["BASE_ID"])
+                    single_ticket_orders_base = base.table("Single Ticket Orders")
+                    single_tickets_base = base.table("Single Tickets")
 
-                # 1. Create customer
-                single_ticket_order_record = single_ticket_orders_base.create({
-                    "First Name": FIRST_NAME,
-                    "Last Name": LAST_NAME,
-                    "Email": EMAIL,
-                    "Form Category": FORM_CATEGORY,
-                    "Form Event Order ID": EVENT_ORDER_ID,
-                    "Form Ticket Type": FORM_TICKET_TYPE
-                })
-                single_ticket_order_id = single_ticket_order_record["id"]
-
-                # 2. Find available ticket
-                available_tickets = single_tickets_base.all(
-                    formula="AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Diamond (£50)')",
-                    sort=["Auto ID"],
-                    max_records=1
-                )
-
-                if not available_tickets:
-                    st.warning("No available tickets at this time.")
-                else:
-                    ticket = available_tickets[0]
-                    ticket_record_id = ticket["id"]
-
-                    # 3. Link ticket to customer
-                    single_ticket_orders_base.update(single_ticket_order_id, {
-                        "Single Tickets (Linked)": [ticket_record_id]  # Linked field
+                    # 1. Create customer
+                    single_ticket_order_record = single_ticket_orders_base.create({
+                        "First Name": FIRST_NAME,
+                        "Last Name": LAST_NAME,
+                        "Email": EMAIL,
+                        "Form Category": FORM_CATEGORY,
+                        "Form Event Order ID": EVENT_ORDER_ID,
+                        "Form Ticket Type": FORM_TICKET_TYPE
                     })
+                    single_ticket_order_id = single_ticket_order_record["id"]
 
-                    # 4. Mark ticket as assigned
-                    single_tickets_base.update(ticket_record_id, {
-                        "Assigned": True,
-                        "Ticket Status": "On Hold",
-                        "Payment Status": "Pending"
-                    })
+                    # 2. Find available ticket
+                    available_tickets = single_tickets_base.all(
+                        formula="AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Diamond (£50)')",
+                        sort=["Auto ID"],
+                        max_records=1
+                    )
 
-                    st.success("Form submitted and ticket assigned!")
+                    if not available_tickets:
+                        st.warning("No available tickets at this time.")
+                        st.stop()
+                    else:
+                        ticket = available_tickets[0]
+                        ticket_record_id = ticket["id"]
+
+                        # 3. Link ticket to customer
+                        single_ticket_orders_base.update(single_ticket_order_id, {
+                            "Single Tickets (Linked)": [ticket_record_id]  # Linked field
+                        })
+
+                        # 4. Mark ticket as assigned
+                        single_tickets_base.update(ticket_record_id, {
+                            "Assigned": True,
+                            "Ticket Status": "On Hold",
+                            "Payment Status": "Pending"
+                        })
+
+                st.balloons()
+                st.success(f"Thank you for placing an order, **{FIRST_NAME}**! Your order details will be sent to your email, **{EMAIL}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!", icon=":material/celebration:")
 
             except Exception as e:
                 st.error(f"Error submitting customer data to Airtable: {e}")
