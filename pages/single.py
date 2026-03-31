@@ -44,7 +44,7 @@ with GOLD_TAB:
     FORM_TICKET_TYPE = "Single - Gold" # This is the Ticket Type initialised in the form
     AVAILABLE_TICKET_FILTER_FORMULA = "AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Gold (£30)')"
 
-    with st.form("single_gold_form", clear_on_submit=True, enter_to_submit=False):
+    with st.form("single_gold_form", clear_on_submit=False, enter_to_submit=False):
         st.subheader("Gold Booking Form - £30/Person", divider="grey")
         FIRST_NAME = st.text_input("First Name", placeholder="Enter your first name", icon=":material/id_card:", key="single_gold_first_name")
         LAST_NAME = st.text_input("Last Name", placeholder="Enter your last name", icon=":material/id_card:", key="single_gold_last_name")
@@ -109,7 +109,7 @@ with PLATINUM_TAB:
     FORM_TICKET_TYPE = "Single - Platinum" # This is the Ticket Type initialised in the form
     AVAILABLE_TICKET_FILTER_FORMULA = "AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Platinum (£40)')"
 
-    with st.form("single_platinum_form", clear_on_submit=True, enter_to_submit=False):
+    with st.form("single_platinum_form", clear_on_submit=False, enter_to_submit=False):
         st.subheader("Platinum Booking Form - £40/Person", divider="grey")
         FIRST_NAME = st.text_input("First Name", placeholder="Enter your first name", icon=":material/id_card:", key="single_platinum_first_name")
         LAST_NAME = st.text_input("Last Name", placeholder="Enter your last name", icon=":material/id_card:", key="single_platinum_last_name")
@@ -174,7 +174,7 @@ with DIAMOND_TAB:
     FORM_TICKET_TYPE = "Single - Diamond" # This is the Ticket Type initialised in the form
     AVAILABLE_TICKET_FILTER_FORMULA = "AND({Assigned} = FALSE(), {Ticket Type} = 'Single - Diamond (£50)')"
 
-    with st.form("single_diamond_form", clear_on_submit=True, enter_to_submit=False):
+    with st.form("single_diamond_form", clear_on_submit=False, enter_to_submit=False):
         st.subheader("Diamond Booking Form - £50/Person", divider="grey")
         FIRST_NAME = st.text_input("First Name", placeholder="Enter your first name", icon=":material/id_card:", key="single_diamond_first_name")
         LAST_NAME = st.text_input("Last Name", placeholder="Enter your last name", icon=":material/id_card:", key="single_diamond_last_name")
