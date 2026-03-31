@@ -34,7 +34,9 @@ def st_horizontal():
         st.markdown('<span class="hide-element horizontal-marker"></span>', unsafe_allow_html=True)
         yield
 
-st.title("Family Booking")
+AVAILABLE_TICKET_FORMULA = "AND({Assigned} = FALSE())"
+AVAILABLE_TICKET_COUNT = airtable_functions.airtable_get_total_family_ticket_count(AVAILABLE_TICKET_FORMULA)
+st.title(f"Family Booking ({AVAILABLE_TICKET_COUNT} tickets left!)")
 
 GOLD_TAB, PLATINUM_TAB, DIAMOND_TAB = st.tabs(["Gold 🟡", "Platinum ⚪", "Diamond 🔵"], width="stretch")
 
@@ -55,7 +57,7 @@ with GOLD_TAB:
                 st.subheader("Gold Booking Form - :green[£100]/Family", divider="grey")
 
             with TICKET_COUNT_COLUMN:
-                st.metric("Remaining Tickets", value=f"{AVAILABLE_TICKET_COUNT} Left!", border=True, label_visibility="visible")
+                st.metric("Remaining Gold Tickets", value=f"{AVAILABLE_TICKET_COUNT} Left!", border=True, label_visibility="visible")
 
         FIRST_NAME = st.text_input("First Name", placeholder="Enter your first name", icon=":material/id_card:", key=f"family_gold_first_name_{st.session_state.get('family_gold_counter_first_name', 0)}")
         LAST_NAME = st.text_input("Last Name", placeholder="Enter your last name", icon=":material/id_card:", key=f"family_gold_last_name_{st.session_state.get('family_gold_counter_last_name', 0)}")
@@ -142,7 +144,7 @@ with PLATINUM_TAB:
                 st.subheader("Platinum Booking Form - :green[£150]/Family", divider="grey")
 
             with TICKET_COUNT_COLUMN:
-                st.metric("Remaining Tickets", value=f"{AVAILABLE_TICKET_COUNT} Left!", border=True, label_visibility="visible")
+                st.metric("Remaining Platinum Tickets", value=f"{AVAILABLE_TICKET_COUNT} Left!", border=True, label_visibility="visible")
 
         FIRST_NAME = st.text_input("First Name", placeholder="Enter your first name", icon=":material/id_card:", key=f"family_platinum_first_name_{st.session_state.get('family_platinum_counter_first_name', 0)}")
         LAST_NAME = st.text_input("Last Name", placeholder="Enter your last name", icon=":material/id_card:", key=f"family_platinum_last_name_{st.session_state.get('family_platinum_counter_last_name', 0)}")
@@ -229,7 +231,7 @@ with DIAMOND_TAB:
                 st.subheader("Diamond Booking Form - :green[£175]/Family", divider="grey")
 
             with TICKET_COUNT_COLUMN:
-                st.metric("Remaining Tickets", value=f"{AVAILABLE_TICKET_COUNT} Left!", border=True, label_visibility="visible")
+                st.metric("Remaining Diamond Tickets", value=f"{AVAILABLE_TICKET_COUNT} Left!", border=True, label_visibility="visible")
 
         FIRST_NAME = st.text_input("First Name", placeholder="Enter your first name", icon=":material/id_card:", key=f"family_diamond_first_name_{st.session_state.get('family_diamond_counter_first_name', 0)}")
         LAST_NAME = st.text_input("Last Name", placeholder="Enter your last name", icon=":material/id_card:", key=f"family_diamond_last_name_{st.session_state.get('family_diamond_counter_last_name', 0)}")
