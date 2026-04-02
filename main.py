@@ -15,12 +15,19 @@ def main():
         }
     )
 
-    # Hides the streamlit main menu
+    # Hides the streamlit app header
     st.html("""
                 <style>
                     .stAppHeader {visibility: hidden;}
                 </style>
             """)
+    
+    # Hides the streamlit main menu
+    #st.html("""
+                #<style>
+                    #MainMenu {visibility: hidden;}
+                #</style>
+            #""")
 
     # Hides the markdown text's anchor link icon
     st.html("""
