@@ -8,8 +8,8 @@ import re
 
 #ticketer_bg.enable_svg_bg()
 
-def booking_success_message(name, email):
-    return f"Thank you for placing an order, **{name}**! Your order details will be sent to your email, **{email}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!"
+def booking_success_message(name, email, order_id, ticket_type, ticket_price):
+    return f"##### Thank you for placing an order, **{name}**!\nYour order details will be sent to your email, **{email}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Please pay the required *amount* using the correct *reference*, as provided below, in the mentioned bank details. Thank you once again!\n##### Order Summary:\nBooking Type: **{ticket_type}**\n\nReference No.: **{order_id}**\n\nPrice: **£{ticket_price}.00**\n##### Bank Details:\nAccount Name: **United Shalom Pentecostal Church**\n\nAccount No.: **01724037**\n\nSort Code: **40-31-30**"
 
 def mobile_number_verifier(mobile_number):
     try:
@@ -67,13 +67,16 @@ with GOLD_TAB:
     # Checking for booking success status in session state
     if st.session_state.get("booking_success_single_gold"):
         st.balloons()
-        single_gold_success_message = booking_success_message(st.session_state.booked_name_single_gold, st.session_state.booked_email_single_gold)
+        single_gold_success_message = booking_success_message(st.session_state.booked_name_single_gold, st.session_state.booked_email_single_gold, st.session_state.booked_order_id_single_gold, st.session_state.booked_ticket_type_single_gold, st.session_state.booked_ticket_price_single_gold)
         st.success(single_gold_success_message, icon=":material/celebration:")
 
         # Reset
         del st.session_state.booking_success_single_gold
         del st.session_state.booked_name_single_gold
         del st.session_state.booked_email_single_gold
+        del st.session_state.booked_order_id_single_gold
+        del st.session_state.booked_ticket_type_single_gold
+        del st.session_state.booked_ticket_price_single_gold
         if "pending_booking_single_gold" in st.session_state:
             del st.session_state.pending_booking_single_gold
 
@@ -121,11 +124,14 @@ with GOLD_TAB:
         with st_horizontal():
             if st.button("Confirm", type="primary", width="stretch", key="single_gold_confirm_button"):
                 try:
-                    airtable_functions.airtable_single_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula)
+                    order_id, ticket_type, ticket_price = airtable_functions.airtable_single_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula)
 
                     st.session_state.booking_success_single_gold = True
                     st.session_state.booked_name_single_gold = first_name
                     st.session_state.booked_email_single_gold = email
+                    st.session_state.booked_order_id_single_gold = order_id
+                    st.session_state.booked_ticket_type_single_gold = ticket_type
+                    st.session_state.booked_ticket_price_single_gold = ticket_price
 
                     # RESET SESSION STATES OF INPUT ELEMENTS (This is manual reset rather than using clear_on_submit=True)
                     st.session_state.single_gold_counter_first_name = st.session_state.get('single_gold_counter_first_name', 0) + 1
@@ -164,13 +170,16 @@ with PLATINUM_TAB:
     # Checking for booking success status in session state
     if st.session_state.get("booking_success_single_platinum"):
         st.balloons()
-        single_platinum_success_message = booking_success_message(st.session_state.booked_name_single_platinum, st.session_state.booked_email_single_platinum)
+        single_platinum_success_message = booking_success_message(st.session_state.booked_name_single_platinum, st.session_state.booked_email_single_platinum, st.session_state.booked_order_id_single_platinum, st.session_state.booked_ticket_type_single_platinum, st.session_state.booked_ticket_price_single_platinum)
         st.success(single_platinum_success_message, icon=":material/celebration:")
 
         # Reset
         del st.session_state.booking_success_single_platinum
         del st.session_state.booked_name_single_platinum
         del st.session_state.booked_email_single_platinum
+        del st.session_state.booked_order_id_single_platinum
+        del st.session_state.booked_ticket_type_single_platinum
+        del st.session_state.booked_ticket_price_single_platinum
         if "pending_booking_single_platinum" in st.session_state:
             del st.session_state.pending_booking_single_platinum
 
@@ -218,11 +227,14 @@ with PLATINUM_TAB:
         with st_horizontal():
             if st.button("Confirm", type="primary", width="stretch", key="single_platinum_confirm_button"):
                 try:
-                    airtable_functions.airtable_single_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula)
+                    order_id, ticket_type, ticket_price = airtable_functions.airtable_single_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula)
 
                     st.session_state.booking_success_single_platinum = True
                     st.session_state.booked_name_single_platinum = first_name
                     st.session_state.booked_email_single_platinum = email
+                    st.session_state.booked_order_id_single_platinum  = order_id
+                    st.session_state.booked_ticket_type_single_platinum = ticket_type
+                    st.session_state.booked_ticket_price_single_platinum = ticket_price
 
                     # RESET SESSION STATES OF INPUT ELEMENTS
                     st.session_state.single_platinum_counter_first_name = st.session_state.get('single_platinum_counter_first_name', 0) + 1
@@ -261,13 +273,16 @@ with DIAMOND_TAB:
     # Checking for booking success status in session state
     if st.session_state.get("booking_success_single_diamond"):
         st.balloons()
-        single_diamond_success_message = booking_success_message(st.session_state.booked_name_single_diamond, st.session_state.booked_email_single_diamond)
+        single_diamond_success_message = booking_success_message(st.session_state.booked_name_single_diamond, st.session_state.booked_email_single_diamond, st.session_state.booked_order_id_single_diamond, st.session_state.booked_ticket_type_single_diamond, st.session_state.booked_ticket_price_single_diamond)
         st.success(single_diamond_success_message, icon=":material/celebration:")
 
         # Reset
         del st.session_state.booking_success_single_diamond
         del st.session_state.booked_name_single_diamond
         del st.session_state.booked_email_single_diamond
+        del st.session_state.booked_order_id_single_diamond
+        del st.session_state.booked_ticket_type_single_diamond
+        del st.session_state.booked_ticket_price_single_diamond
         if "pending_booking_single_diamond" in st.session_state:
             del st.session_state.pending_booking_single_diamond
 
@@ -315,11 +330,14 @@ with DIAMOND_TAB:
         with st_horizontal():
             if st.button("Confirm", type="primary", width="stretch", key="single_diamond_confirm_button"):
                 try:
-                    airtable_functions.airtable_single_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula)
+                    order_id, ticket_type, ticket_price = airtable_functions.airtable_single_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula)
 
                     st.session_state.booking_success_single_diamond = True
                     st.session_state.booked_name_single_diamond = first_name
                     st.session_state.booked_email_single_diamond = email
+                    st.session_state.booked_order_id_single_diamond = order_id
+                    st.session_state.booked_ticket_type_single_diamond = ticket_type
+                    st.session_state.booked_ticket_price_single_diamond = ticket_price
 
                     # RESET SESSION STATES OF INPUT ELEMENTS
                     st.session_state.single_diamond_counter_first_name = st.session_state.get('single_diamond_counter_first_name', 0) + 1

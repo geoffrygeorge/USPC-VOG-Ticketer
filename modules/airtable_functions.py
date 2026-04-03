@@ -46,6 +46,12 @@ def airtable_single_ticket_assigner(first_name, last_name, mobile_number, email,
             "Payment Status": "Pending"
         })
 
+        # 5. FETCH RELEVANT DETAILS OF THE UPDATED TICKET
+        updated_ticket = single_tickets_base.get(ticket_record_id)
+        fields = updated_ticket.get("fields", {})
+        
+        return fields.get("Order ID"), fields.get("Ticket Type"), fields.get("Ticket Price")
+
 def airtable_family_ticket_assigner(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula):
     with st.spinner("Processing..."):
         api = Api(st.secrets["airtable"]["PAT"])
@@ -81,7 +87,7 @@ def airtable_family_ticket_assigner(first_name, last_name, mobile_number, email,
 
         # 3. LINK THE FIRST AVAILABLE TICKET TO THE CURRENT CUSTOMER
         family_ticket_orders_base.update(family_ticket_order_id, {
-            "Family Tickets (Linked)": [ticket_record_id]  # Linked field
+            "Family Tickets (Linked)": [ticket_record_id]
         })
 
         # 4. MARK THE LINKED TICKET AS ASSIGNED
@@ -90,6 +96,12 @@ def airtable_family_ticket_assigner(first_name, last_name, mobile_number, email,
             "Ticket Status": "On Hold",
             "Payment Status": "Pending"
         })
+
+        # 5. FETCH THE RELEVANT DETAILS OF THE UPDATED TICKET
+        updated_ticket = family_tickets_base.get(ticket_record_id)
+        fields = updated_ticket.get("fields", {})
+
+        return fields.get("Order ID"), fields.get("Ticket Type"), fields.get("Ticket Price")
 
 def airtable_get_unassigned_single_ticket_count(filter_formula):
     api = Api(st.secrets["airtable"]["PAT"])
