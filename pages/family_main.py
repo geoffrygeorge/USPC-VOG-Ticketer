@@ -8,6 +8,9 @@ import re
 
 #ticketer_bg.enable_svg_bg()
 
+def booking_success_message(name, email):
+    return f"Thank you for placing an order, **{name}**! Your order details will be sent to your email, **{email}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!"
+
 def mobile_number_verifier(mobile_number):
     try:
         # Enforce format: +447xxxxxxxxx
@@ -59,6 +62,20 @@ st.title(family_title)
 GOLD_TAB, PLATINUM_TAB, DIAMOND_TAB = st.tabs(["Gold 🟡", "Platinum ⚪", "Diamond 🔵"], width="stretch")
 
 with GOLD_TAB:
+
+    # Checking for booking success status in session state
+    if st.session_state.get("booking_success_family_gold"):
+        st.balloons()
+        family_gold_success_message = booking_success_message(st.session_state.booked_name_family_gold, st.session_state.booked_email_family_gold)
+        st.success(family_gold_success_message, icon=":material/celebration:")
+
+        # Reset
+        del st.session_state.booking_success_family_gold
+        del st.session_state.booked_name_family_gold
+        del st.session_state.booked_email_family_gold
+        if "pending_booking_family_gold" in st.session_state:
+            del st.session_state.pending_booking_family_gold
+
     FORM_CATEGORY = "Family" # Differentiates between Single or Family Tickets
     EVENT_ORDER_ID = 73312442 # This is the Event Order ID
     FORM_TICKET_TYPE = "Family - Gold" # This is the Ticket Type initialised in the form
@@ -141,19 +158,21 @@ with GOLD_TAB:
             }
             show_family_gold_confirm_dialog(FIRST_NAME, LAST_NAME, MOBILE_NUMBER, EMAIL, FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
 
-    # Check for success
-    if st.session_state.get("booking_success_family_gold"):
+with PLATINUM_TAB:
+
+    # Checking for booking success status in session state
+    if st.session_state.get("booking_success_family_platinum"):
         st.balloons()
-        st.success(f"Thank you for placing an order, **{st.session_state.booked_name_family_gold}**! Your order details will be sent to your email, **{st.session_state.booked_email_family_gold}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!", icon=":material/celebration:")
+        family_platinum_success_message = booking_success_message(st.session_state.booked_name_family_platinum, st.session_state.booked_email_family_platinum)
+        st.success(family_platinum_success_message, icon=":material/celebration:")
 
         # Reset
-        del st.session_state.booking_success_family_gold
-        del st.session_state.booked_name_family_gold
-        del st.session_state.booked_email_family_gold
-        if "pending_booking_family_gold" in st.session_state:
-            del st.session_state.pending_booking_family_gold
+        del st.session_state.booking_success_family_platinum
+        del st.session_state.booked_name_family_platinum
+        del st.session_state.booked_email_family_platinum
+        if "pending_booking_family_platinum" in st.session_state:
+            del st.session_state.pending_booking_family_platinum
 
-with PLATINUM_TAB:
     FORM_CATEGORY = "Family" # Differentiates between Single or Family Tickets
     EVENT_ORDER_ID = 73312475 # This is the Event Order ID
     FORM_TICKET_TYPE = "Family - Platinum" # This is the Ticket Type initialised in the form
@@ -236,19 +255,21 @@ with PLATINUM_TAB:
             }
             show_family_platinum_confirm_dialog(FIRST_NAME, LAST_NAME, MOBILE_NUMBER, EMAIL, FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
 
-    # Check for success
-    if st.session_state.get("booking_success_family_platinum"):
+with DIAMOND_TAB:
+
+    # Checking for booking success status in session state
+    if st.session_state.get("booking_success_family_diamond"):
         st.balloons()
-        st.success(f"Thank you for placing an order, **{st.session_state.booked_name_family_platinum}**! Your order details will be sent to your email, **{st.session_state.booked_email_family_platinum}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!", icon=":material/celebration:")
+        family_diamond_success_message = booking_success_message(st.session_state.booked_name_family_diamond, st.session_state.booked_email_family_diamond)
+        st.success(family_diamond_success_message, icon=":material/celebration:")
 
         # Reset
-        del st.session_state.booking_success_family_platinum
-        del st.session_state.booked_name_family_platinum
-        del st.session_state.booked_email_family_platinum
-        if "pending_booking_family_platinum" in st.session_state:
-            del st.session_state.pending_booking_family_platinum
+        del st.session_state.booking_success_family_diamond
+        del st.session_state.booked_name_family_diamond
+        del st.session_state.booked_email_family_diamond
+        if "pending_booking_family_diamond" in st.session_state:
+            del st.session_state.pending_booking_family_diamond
 
-with DIAMOND_TAB:
     FORM_CATEGORY = "Family" # Differentiates between Single or Family Tickets
     EVENT_ORDER_ID = 73312496 # This is the Event Order ID
     FORM_TICKET_TYPE = "Family - Diamond" # This is the Ticket Type initialised in the form
@@ -330,15 +351,3 @@ with DIAMOND_TAB:
                 "formula": AVAILABLE_TICKET_FILTER_FORMULA
             }
             show_family_diamond_confirm_dialog(FIRST_NAME, LAST_NAME, MOBILE_NUMBER, EMAIL, FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
-
-    # Check for success
-    if st.session_state.get("booking_success_family_diamond"):
-        st.balloons()
-        st.success(f"Thank you for placing an order, **{st.session_state.booked_name_family_diamond}**! Your order details will be sent to your email, **{st.session_state.booked_email_family_diamond}**, shortly. If you haven't received any order confirmation email, please contact the support team whose numbers are provided in the homepage. Thank you once again!", icon=":material/celebration:")
-
-        # Reset
-        del st.session_state.booking_success_family_diamond
-        del st.session_state.booked_name_family_diamond
-        del st.session_state.booked_email_family_diamond
-        if "pending_booking_family_diamond" in st.session_state:
-            del st.session_state.pending_booking_family_diamond
