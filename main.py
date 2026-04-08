@@ -39,6 +39,18 @@ def main():
                     .stToolbarActions {visibility: hidden;}
                 </style>
             """)
+    
+    # Center's the status widget
+    st.html("""
+                <style>
+                    .stStatusWidget {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                </style>
+            """)
 
     # Hides the markdown text's anchor link icon
     st.html("""
