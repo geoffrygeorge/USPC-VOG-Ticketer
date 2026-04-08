@@ -61,6 +61,7 @@ def main():
         st.Page("pages/family_main.py"),
         st.Page("pages/offline_single_main.py"),
         st.Page("pages/offline_family_main.py"),
+        st.Page("pages/dev_tools.py")
     ]
 
     ticketer_pages = st.navigation(pages=nav_pages, position="hidden")
