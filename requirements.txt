@@ -4,3 +4,5 @@ streamlit-phone-number==0.0.9
 phonenumbers==9.0.26
 streamlit-folium==0.26.2
 folium==0.20.0
+fpdf==1.7.2
+pillow==11.3.0
