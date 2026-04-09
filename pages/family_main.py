@@ -55,6 +55,8 @@ with st_horizontal():
     if st.button("Switch to **Single** Booking"):
         st.switch_page("pages/single_main.py")
 
+expander_functions.info_expander("family_map", "family_segment")
+
 AVAILABLE_TICKET_FORMULA = "AND({Assigned} = FALSE())"
 AVAILABLE_TICKET_COUNT = airtable_functions.airtable_get_total_family_ticket_count(AVAILABLE_TICKET_FORMULA)
 family_title = "Family Booking" if AVAILABLE_TICKET_COUNT > 37 else f"Family Booking ({AVAILABLE_TICKET_COUNT} total tickets left!)"
@@ -119,8 +121,6 @@ with GOLD_TAB:
             family_gold_form_button_icon = ":material/add_shopping_cart:" if not is_family_gold_disabled else ":material/block:"
 
             family_gold_form_submitted = st.form_submit_button(family_gold_form_button_label, icon=family_gold_form_button_icon, disabled=is_family_gold_disabled)
-
-        expander_functions.info_expander("family_gold_map", "family_gold_segment")
 
         @st.dialog("Confirm Booking", width="small")
         def show_family_gold_confirm_dialog(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula):
@@ -228,8 +228,6 @@ with PLATINUM_TAB:
 
             family_platinum_form_submitted = st.form_submit_button(family_platinum_form_button_label, icon=family_platinum_form_button_icon, disabled=is_family_platinum_disabled)
 
-        expander_functions.info_expander("family_platinum_map", "family_platinum_segment")
-
         @st.dialog("Confirm Booking", width="small")
         def show_family_platinum_confirm_dialog(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula):
             st.write(f"Are you sure you want to confirm the booking for **{first_name} {last_name}**?")
@@ -335,8 +333,6 @@ with DIAMOND_TAB:
             family_diamond_form_button_icon = ":material/add_shopping_cart:" if not is_family_diamond_disabled else ":material/block:"
 
             family_diamond_form_submitted = st.form_submit_button(family_diamond_form_button_label, icon=family_diamond_form_button_icon, disabled=is_family_diamond_disabled)
-
-        expander_functions.info_expander("family_diamond_map", "family_diamond_segment")
 
         @st.dialog("Confirm Booking", width="small")
         def show_family_diamond_confirm_dialog(first_name, last_name, mobile_number, email, form_category, event_order_id, form_ticket_type, available_ticket_filter_formula):
