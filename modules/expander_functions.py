@@ -23,13 +23,16 @@ def info_expander(map_key, segmented_key):
 
                 st_folium(vog_venue_map, zoom=15, width="stretch", height=300, key=f"st_folium_map{map_key}")
 
+            EMPTY_COL_1, MAP_BUTTON_COLUMN, EMPTY_COL_2 = st.columns([2, 2, 2], gap="small", vertical_alignment="center")
+            with MAP_BUTTON_COLUMN:
+                st.link_button("Open Maps", url="https://maps.app.goo.gl/uuTExUqdxGW2wJhu6", icon=":material/explore:", width="stretch")
+
             VENUE_DETAILS_CONTAINER = st.container(border=False)
             with VENUE_DETAILS_CONTAINER:
                 st.markdown("#### :material/stadium: Venue: *Wythenshawe Forum Centre*")
                 st.markdown("#### :material/signpost: Street: *Poundswick Ln*")
                 st.markdown("#### :material/map_search: Postcode: *M22 9PQ*")
                 st.markdown("#### :material/location_city: City: *Manchester*")
-                st.link_button("Open Maps", url="https://maps.app.goo.gl/uuTExUqdxGW2wJhu6", icon=":material/explore:")
 
                 st.divider()
 

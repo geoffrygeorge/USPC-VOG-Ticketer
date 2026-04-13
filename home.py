@@ -31,9 +31,9 @@ st.divider()
 
 expander_functions.info_expander("main_map", "main_segment")
 
-EMPTY_COL_1, BOOKING_BUTTON_COLUMN, EMPTY_COL_2 = st.columns([2, 1, 2], gap="small", vertical_alignment="center")
+EMPTY_COL_1, BOOKING_BUTTON_COLUMN, EMPTY_COL_2 = st.columns([2, 2, 2], gap="small", vertical_alignment="center")
 with BOOKING_BUTTON_COLUMN:
-    if st.button("BOOK NOW!", type="primary", key="booking_primary", width="stretch", help="Start Booking!"):
+    if st.button("BOOK NOW!", icon=":material/event_available:", type="primary", key="booking_primary", width="stretch", help="Start Booking!"):
         select_booking()
 
 asset_gen.sub_home_title("🌟Meet the Stars!🌟")
