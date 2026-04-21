@@ -168,7 +168,7 @@ with GOLD_TAB:
                     "ticket_type": FORM_TICKET_TYPE,
                     "formula": AVAILABLE_TICKET_FILTER_FORMULA
                 }
-                show_single_gold_confirm_dialog(FIRST_NAME.strip(), LAST_NAME.strip(), "".join(MOBILE_NUMBER.split()), EMAIL.strip(), FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
+                show_single_gold_confirm_dialog(FIRST_NAME.strip().title(), LAST_NAME.strip().title(), "".join(MOBILE_NUMBER.split()), EMAIL.strip(), FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
 
 with PLATINUM_TAB:
 
@@ -274,7 +274,7 @@ with PLATINUM_TAB:
                     "ticket_type": FORM_TICKET_TYPE,
                     "formula": AVAILABLE_TICKET_FILTER_FORMULA
                 }
-                show_single_platinum_confirm_dialog(FIRST_NAME.strip(), LAST_NAME.strip(), "".join(MOBILE_NUMBER.split()), EMAIL.strip(), FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
+                show_single_platinum_confirm_dialog(FIRST_NAME.strip().title(), LAST_NAME.strip().title(), "".join(MOBILE_NUMBER.split()), EMAIL.strip(), FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
 
 with DIAMOND_TAB:
 
@@ -380,4 +380,4 @@ with DIAMOND_TAB:
                     "ticket_type": FORM_TICKET_TYPE,
                     "formula": AVAILABLE_TICKET_FILTER_FORMULA
                 }
-                show_single_diamond_confirm_dialog(FIRST_NAME.strip(), LAST_NAME.strip(), "".join(MOBILE_NUMBER.split()), EMAIL.strip(), FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
+                show_single_diamond_confirm_dialog(FIRST_NAME.strip().title(), LAST_NAME.strip().title(), "".join(MOBILE_NUMBER.split()), EMAIL.strip(), FORM_CATEGORY, EVENT_ORDER_ID, FORM_TICKET_TYPE, AVAILABLE_TICKET_FILTER_FORMULA)
